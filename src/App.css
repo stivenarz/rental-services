@@ -1,24 +1,23 @@
-:root {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-
 a {
   cursor: pointer;
 }
 
 .container {
-  height: 95vh;
-  width: 90vw;
-  padding: 0;
-  margin: 0;
-}
-
-.header {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: auto;
+  color: var(--ag-muted);
   text-align: center;
 }
 
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto 40px;
+}

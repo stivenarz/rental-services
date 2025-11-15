@@ -27,7 +27,7 @@ export default function Navbar({ brand = 'MiMarca', links = null, user, setSearc
 
   const defaultLinks = [
     { label: 'Inicio', href: '/' },
-    { label: 'Acerca de', href: '/about' },
+    { label: 'Acerca de nosotros', href: '/about' },
     { label: 'Contáctenos', href: '/contact' }
   ];
 

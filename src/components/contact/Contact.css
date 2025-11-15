@@ -10,28 +10,6 @@
   font-family: "Inter", sans-serif;
 }
 
-/* Container */
-.contact-container {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-  color: var(--ct-white);
-  text-align: center;
-}
-
-.contact-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.contact-subtitle {
-  font-size: 1.05rem;
-  color: var(--ct-muted);
-  max-width: 650px;
-  margin: 0 auto 40px;
-}
-
 /* Grid */
 .contact-grid {
   display: grid;

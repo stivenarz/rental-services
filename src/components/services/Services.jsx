@@ -1,9 +1,16 @@
 // Services.jsx
 import React, { useEffect, useState } from 'react';
 import './services.css';
+import apiService from '../../services/apiService';
 
 export default function Services({ services, serviceRequest }) {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+  apiService.getAll("services")
+    .then(setServices)
+    .catch(console.error);
+}, []);
 
   // Simula carga
   useEffect(() => {
@@ -15,9 +22,9 @@ export default function Services({ services, serviceRequest }) {
   }, []);
 
   return (
-    <section className="sv-container">
-      <h2 className="sv-title">Servicios Locativos para tu Hogar</h2>
-      <p className="sv-subtitle">Contamos con profesionales expertos para mejorar, reparar o transformar tus espacios.</p>
+    <section className="container">
+      <h2 className="title">Servicios Locativos para tu Hogar</h2>
+      <p className="subtitle">Contamos con profesionales expertos para mejorar, reparar o transformar tus espacios.</p>
 
       {/* Spinner */}
       {loading ? (

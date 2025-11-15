@@ -63,9 +63,9 @@ export default function TechniciansAdmin() {
   };
 
   return (
-    <section className="tech-admin-container">
-      <h2 className="tech-admin-title">Administración de Técnicos</h2>
-      <p className="tech-admin-subtitle">
+    <section className="container">
+      <h2 className="title">Administración de Técnicos</h2>
+      <p className="subtitle">
         Gestiona los técnicos y sus especialidades de servicio
       </p>
 

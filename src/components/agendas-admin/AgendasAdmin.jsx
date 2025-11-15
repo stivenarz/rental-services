@@ -83,9 +83,9 @@ export default function AgendasAdmin() {
   const uniqueTechnicians = [...new Set(agendas.map((a) => a.technician))];
 
   return (
-    <section className="ag-admin-container">
-      <h2 className="ag-admin-title">Administración de Agendas</h2>
-      <p className="ag-admin-subtitle">Control de visitas programadas por los usuarios</p>
+    <section className="container">
+      <h2 className="title">Administración de Agendas</h2>
+      <p className="subtitle">Control de visitas programadas por los usuarios</p>
 
       {/* FILTROS */}
       <div className="ag-filters">

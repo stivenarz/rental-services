@@ -10,24 +10,6 @@
   --tech-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-.tech-admin-container {
-  padding: 50px 20px;
-  max-width: 1200px;
-  margin: auto;
-  color: var(--tech-white);
-}
-
-.tech-admin-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--tech-muted);
-}
-
-.tech-admin-subtitle {
-  color: var(--tech-muted);
-  margin-bottom: 25px;
-}
-
 .tech-filters {
   display: flex;
   gap: 14px;
@@ -83,6 +65,8 @@
 
 .tech-add-btn-wrapper {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: start;
 }
 
 .tech-add-btn {

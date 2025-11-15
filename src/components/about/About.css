@@ -23,6 +23,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 12px;
+  color: var(--ab-muted);
 }
 
 .ab-subtitle {

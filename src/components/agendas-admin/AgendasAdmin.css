@@ -10,23 +10,6 @@
   --ag-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-.ag-admin-container {
-  padding: 50px 20px;
-  max-width: 1200px;
-  margin: auto;
-  color: var(--ag-muted);
-}
-
-.ag-admin-title {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.ag-admin-subtitle {
-  color: var(--ag-muted);
-  margin-bottom: 25px;
-}
-
 .ag-filters {
   display: flex;
   gap: 14px;

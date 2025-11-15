@@ -26,9 +26,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact-container">
-      <h2 className="contact-title">Contacto</h2>
-      <p className="contact-subtitle">
+    <section className="container">
+      <h2 className="title">Contacto</h2>
+      <p className="subtitle">
         ¿Tienes alguna inquietud o deseas obtener más información sobre nuestros
         servicios? ¡Estamos aquí para ayudarte!
       </p>
