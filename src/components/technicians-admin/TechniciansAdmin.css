@@ -1,0 +1,117 @@
+:root {
+  --tech-bg: #0f1724;
+  --tech-surface: #111827;
+  --tech-card: #1a2332;
+  --tech-accent: #06b6d4;
+  --tech-accent2: #8b5cf6;
+  --tech-white: #ffffff;
+  --tech-muted: #9aa4b2;
+  --tech-radius: 14px;
+  --tech-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.tech-admin-container {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: auto;
+  color: var(--tech-white);
+}
+
+.tech-admin-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--tech-muted);
+}
+
+.tech-admin-subtitle {
+  color: var(--tech-muted);
+  margin-bottom: 25px;
+}
+
+.tech-filters {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.tech-filters select {
+  background: var(--tech-card);
+  border: none;
+  padding: 10px 14px;
+  border-radius: var(--tech-radius);
+  color: var(--tech-white);
+  box-shadow: var(--tech-shadow);
+}
+
+.tech-table-wrapper {
+  overflow-x: auto;
+  background: var(--tech-surface);
+  padding: 20px;
+  border-radius: var(--tech-radius);
+  box-shadow: var(--tech-shadow);
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tech-table th,
+.tech-table td {
+  padding: 14px;
+  text-align: left;
+}
+
+.tech-table tr:nth-child(even) {
+  background: #16202c;
+}
+
+.tech-empty {
+  text-align: center;
+  padding: 20px;
+  color: var(--tech-muted);
+}
+
+.tech-row {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tech-row:hover {
+  background: #1f2937 !important;
+}
+
+.tech-add-btn-wrapper {
+  margin-bottom: 20px;
+}
+
+.tech-add-btn {
+  background: var(--tech-accent);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: var(--tech-radius);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.tech-add-btn:hover {
+  background: var(--tech-accent2);
+  color: #fff;
+}
+
+.tech-delete-btn {
+  background: #ef4444;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: var(--tech-radius);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.tech-delete-btn:hover {
+  background: #b91c1c;
+}

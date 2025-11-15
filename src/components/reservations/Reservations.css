@@ -1,0 +1,134 @@
+/* Contenedor general */
+.reservations-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+.reservations-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* Loading */
+.reservations-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px;
+}
+
+.spinner {
+  width: 35px;
+  height: 35px;
+  border: 4px solid #dcdcdc;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* No reservas */
+.no-reservations {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  padding: 40px 0;
+}
+
+/* Cards */
+.reservations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+.reservation-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reservation-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.card-info h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.card-info p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+.card-info p span {
+  font-weight: 600;
+}
+
+/* Estado */
+.status {
+  margin-top: 8px;
+  padding: 6px 10px;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status.confirmada {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status.pendiente {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.status.cancelada {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Botón cancelar */
+.cancel-btn {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 15px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.cancel-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

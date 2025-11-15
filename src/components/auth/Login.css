@@ -1,0 +1,93 @@
+/* Styles for LoginModern component (matches class names used in LoginModern.jsx) */
+:root{
+  --bg: #0f1724;
+  --card: #0b1220;
+  --muted: #9aa4b2;
+  --accent-start: #6f6ff5;
+  --accent-end: #9b4dff;
+  --white: #f5f7fb;
+}
+.sv-container {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--sv-white);
+}
+.login-wrapper{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background: linear-gradient(180deg, #071023 0%, #081426 100%);
+  color:var(--white);
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  padding:28px 28px;
+  border-radius:16px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.login-title{
+  font-size:1.6rem;
+  margin:0 0 6px 0;
+  text-align:center;
+}
+
+.login-sub{
+  font-size:0.95rem;
+  color:var(--muted);
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.login-field{ display:flex; flex-direction:column; gap:8px; }
+.login-field label{ font-size:0.9rem; color:var(--muted); }
+.login-field input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+  color:var(--white);
+  font-size:0.96rem;
+  outline:none;
+  transition: box-shadow 0.18s ease, transform 0.12s ease;
+}
+.login-field input:focus{
+  box-shadow: 0 8px 20px rgba(107,110,255,0.12);
+  transform: translateY(-1px);
+  border-color: rgba(111,111,245,0.4);
+}
+
+.login-btn{
+  margin-top:6px;
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:none;
+  background: linear-gradient(90deg,var(--accent-start), var(--accent-end));
+  color:#071023;
+  font-weight:700;
+  cursor:pointer;
+  font-size:1rem;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.login-btn:hover{ transform: translateY(-3px); box-shadow: 0 10px 30px rgba(155,77,255,0.12); }
+
+.login-links{ display:flex; justify-content:space-between; margin-top:12px; gap:12px; }
+.login-links a{ color:var(--muted); font-size:0.9rem; text-decoration:none; }
+.login-links a:hover{ color:var(--white); text-decoration:underline; }
+
+/* Responsive */
+@media (max-width:480px){
+  .login-box{ padding:20px; border-radius:12px; }
+  .login-title{ font-size:1.4rem; }
+}

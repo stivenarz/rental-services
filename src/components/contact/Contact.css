@@ -1,0 +1,125 @@
+:root {
+  --ct-bg: #0f1724;
+  --ct-surface: #111827;
+  --ct-card: #1a2332;
+  --ct-accent: #06b6d4;
+  --ct-white: #ffffff;
+  --ct-muted: #9aa4b2;
+  --ct-radius: 14px;
+  --ct-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  font-family: "Inter", sans-serif;
+}
+
+/* Container */
+.contact-container {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: var(--ct-white);
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.contact-subtitle {
+  font-size: 1.05rem;
+  color: var(--ct-muted);
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+
+/* Grid */
+.contact-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Contact info card */
+.contact-box {
+  background: var(--ct-card);
+  padding: 24px;
+  border-radius: var(--ct-radius);
+  box-shadow: var(--ct-shadow);
+  text-align: left;
+  transition: background 0.3s ease, transform 0.25s ease;
+}
+
+.contact-box:hover {
+  background: #1f2a3d;
+  transform: translateY(-4px);
+}
+
+.contact-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.contact-label {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.contact-value {
+  color: var(--ct-muted);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Form */
+.contact-form {
+  background: var(--ct-card);
+  padding: 30px;
+  border-radius: var(--ct-radius);
+  box-shadow: var(--ct-shadow);
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: var(--ct-muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--ct-surface);
+  border: 1px solid #243047;
+  color: var(--ct-white);
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--ct-accent);
+  box-shadow: 0 0 6px rgba(6, 182, 212, 0.4);
+}
+
+/* Button */
+.contact-btn {
+  background: linear-gradient(90deg, var(--ct-accent), #8b5cf6);
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  font-weight: 600;
+  color: #062024;
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.contact-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}

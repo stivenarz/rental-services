@@ -1,0 +1,114 @@
+/* Contenedor general */
+.admin-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* Título */
+.admin-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* Formulario */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  border-color: #5b8def;
+}
+
+.admin-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+/* Botones */
+.btn-primary {
+  background: #4e73df;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+/* Lista de servicios */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.06);
+}
+
+.service-card h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.service-card p {
+  margin: 0 0 14px;
+  color: #555;
+}
+
+/* Acciones */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit {
+  background: #f7c948;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+  opacity: 0.85;
+}

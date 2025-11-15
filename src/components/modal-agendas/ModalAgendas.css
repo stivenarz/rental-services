@@ -1,0 +1,90 @@
+.ag-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.ag-modal {
+  background: var(--ag-card);
+  padding: 30px;
+  border-radius: var(--ag-radius);
+  width: 90%;
+  max-width: 550px;
+  color: var(--ag-white);
+  box-shadow: var(--ag-shadow);
+  animation: fadeIn 0.2s ease;
+}
+
+.ag-modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.ag-modal-section p {
+  margin: 6px 0;
+  color: var(--ag-muted);
+}
+
+.ag-modal-edit {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ag-modal-edit label {
+  color: var(--ag-muted);
+  font-size: 0.9rem;
+}
+
+.ag-modal-edit input,
+.ag-modal-edit select,
+.ag-modal-edit textarea {
+  background: var(--ag-surface);
+  border: none;
+  padding: 10px;
+  border-radius: var(--ag-radius);
+  color: var(--ag-white);
+  box-shadow: var(--ag-shadow);
+}
+
+.ag-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.ag-btn {
+  padding: 10px 20px;
+  border-radius: var(--ag-radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ag-cancel {
+  background: #475569;
+}
+
+.ag-save {
+  background: var(--ag-accent);
+  color: #000;
+}
+
+.ag-save:hover {
+  background: var(--ag-accent2);
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

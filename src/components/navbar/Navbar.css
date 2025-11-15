@@ -1,0 +1,52 @@
+:root{ --nm-bg: #0f1724; --nm-accent: #06b6d4; --nm-surface: #0b1220; --nm-muted: #9aa4b2; --nm-white: #ffffff; }
+        *{box-sizing: border-box}
+        .nm-header{font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: linear-gradient(180deg, var(--nm-bg), var(--nm-surface)); color: var(--nm-white);}
+        .nm-nav{max-width:1200px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+
+        /* Brand */
+        .nm-brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
+        .nm-logo{width:36px; height:36px; border-radius:8px; background: linear-gradient(135deg,var(--nm-accent), #8b5cf6); display:flex; align-items:center; justify-content:center; font-weight:700}
+        .nm-brand h1{font-size:1rem; margin:0}
+
+        /* Desktop links */
+        .nm-links{display:flex; gap:10px; margin-left:12px}
+        .nm-link{padding:8px 12px; border-radius:8px; color:var(--nm-white); text-decoration:none; font-size:0.95rem}
+        .nm-link:hover{background:rgba(255,255,255,0.04)}
+        .nm-link:active{transform:translateY(1px)}
+
+        /* Search */
+        .nm-search{display:flex; align-items:center; gap:8px; padding:6px 8px; background: rgba(255,255,255,0.02); border-radius:10px}
+        .nm-search input{background:transparent; border:0; outline:none; color:var(--nm-white); width:180px}
+        .nm-search input::placeholder{color:var(--nm-muted)}
+
+        /* Actions: profile, buttons */
+        .nm-actions{display:flex; gap:10px; align-items:center}
+        .nm-btn{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:8px 12px; border-radius:10px; color:var(--nm-white); cursor:pointer}
+        .nm-btn.primary{background:linear-gradient(90deg,var(--nm-accent), #8b5cf6); border:none; color:#062024}
+
+        /* Profile avatar */
+        .nm-avatar{width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#f97316,#ef4444); display:inline-flex; align-items:center; justify-content:center; cursor:pointer}
+
+        /* Mobile menu */
+        .nm-hamburger{display:none; background:transparent; border:0; color:var(--nm-white); cursor:pointer}
+        .nm-mobile-menu{display:none}
+
+        /* Profile dropdown */
+        .nm-dropdown{position:relative}
+        .nm-dropdown-panel{position:absolute; right:0; top:48px; min-width:180px; background:linear-gradient(180deg,#071023,#081426); box-shadow:0 8px 30px rgba(2,6,23,0.6); border-radius:10px; padding:8px; z-index:40}
+        .nm-dropdown-item{display:block; padding:8px 10px; border-radius:8px; color:var(--nm-white); text-decoration:none; font-size:0.95rem}
+        .nm-dropdown-item:hover{background:rgba(255,255,255,0.03)}
+
+        /* Responsive */
+        @media (max-width: 880px){
+          .nm-links{display:none}
+          .nm-search{display:none}
+          .nm-hamburger{display:inline-flex}
+          .nm-mobile-menu{display:block; width:100%}
+          .nm-mobile-panel{display:flex; flex-direction:column; gap:8px; padding:12px 20px}
+          .nm-mobile-link{padding:10px; border-radius:8px; color:var(--nm-white); text-decoration:none}
+        }
+
+        /* Small niceties */
+        .nm-focus{outline:2px solid rgba(6,182,212,0.2); outline-offset:2px}
+        .nm-sep{width:1px; height:28px; background:rgba(255,255,255,0.04); border-radius:2px}

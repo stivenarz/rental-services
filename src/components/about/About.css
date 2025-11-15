@@ -1,0 +1,84 @@
+:root {
+  --ab-bg: #0f1724;
+  --ab-surface: #111827;
+  --ab-card: #1a2332;
+  --ab-accent: #06b6d4;
+  --ab-white: #ffffff;
+  --ab-muted: #9aa4b2;
+  --ab-radius: 14px;
+  --ab-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  font-family: "Inter", sans-serif;
+}
+
+.ab-container {
+  padding: 70px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--ab-white);
+  animation: abFade 0.4s ease;
+}
+
+.ab-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ab-subtitle {
+  font-size: 1.1rem;
+  color: var(--ab-muted);
+  max-width: 750px;
+  margin: 0 auto 45px auto;
+  line-height: 1.6;
+}
+
+.ab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.ab-card {
+  background: var(--ab-card);
+  padding: 26px;
+  border-radius: var(--ab-radius);
+  box-shadow: var(--ab-shadow);
+  text-align: left;
+  transition: 0.25s ease;
+}
+
+.ab-card:hover {
+  transform: translateY(-6px);
+  background: #1f2a3d;
+}
+
+.ab-icon {
+  font-size: 2.3rem;
+  margin-bottom: 14px;
+}
+
+.ab-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.ab-card-desc {
+  color: var(--ab-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* Animación */
+@keyframes abFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
