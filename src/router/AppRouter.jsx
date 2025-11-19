@@ -1,42 +1,42 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import About from '../components/about/about';
+import AboutPage from '../pages/AboutPage';
 import Register from '../pages/Register';
 import Recovery from '../pages/Recovery';
 import Login from '../components/auth/Login';
-import Reservations from '../components/reservations/Reservations';
-import Profile from '../components/profile/Profile';
-import Contact from '../components/contact/Contact';
-import Administration from '../components/administration/administration';
 import RoleRoute from '../middleware/RoleRoute';
-import AgendasAdmin from '../components/agendas-admin/AgendasAdmin';
 import TechniciansAdmin from '../components/technicians-admin/TechniciansAdmin';
+import ServicesPage from '../pages/ServicesPage';
+import ProfilePage from '../pages/ProfilePage';
+import ContactPage from '../pages/ContactPage';
+import ReservasPage from '../pages/ReservasPage';
+import ServicesAdministrationPage from '../pages/ServicesAdministrationPage';
+import AgendasAdministrationPage from '../pages/AgendasAdministrationPage';
 
-export default function AppRouter({ search }) {
+export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home search={search} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/" element={<ServicesPage/>} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/recovery" element={<Recovery />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/reservations" element={<Reservations />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/reservations" element={<ReservasPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route
-          path="/administration"
+          path="/services-administration"
           element={
             <RoleRoute allowedRole={'admin'}>
-              <Administration />
+              <ServicesAdministrationPage />
             </RoleRoute>
           }
         />
         <Route
-          path="/agendas"
+          path="/agendas-administration"
           element={
             <RoleRoute allowedRole={'admin'}>
-              <AgendasAdmin />
+              <AgendasAdministrationPage />
             </RoleRoute>
           }
         />

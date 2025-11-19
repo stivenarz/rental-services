@@ -1,13 +1,19 @@
-import React, { useState } from "react";
-import "./modalform.css";
+import React, { useEffect, useState } from 'react';
+import { getLS } from '../../services/localStorageService';
+import './modalform.css';
 
-export default function ServiceRequestModal({ isOpen, onClose, onSubmit, service}) {
+export default function ServiceRequestModal({ isOpen, onClose, onSubmit, service }) {
+  const [user, setUser] = useState(getLS('user') || null);
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    userId: user ? user.id : null,
+    userName: user ? user.name : '',
+    email: user ? user.email : '',
+    phone: user ? user.phone : '',
+    address: user ? user.address : '',
+    date: new Date() || '',
+    observation: '',
     service: service.title,
-    details: "",
   });
 
   if (!isOpen) return null;
@@ -19,75 +25,65 @@ export default function ServiceRequestModal({ isOpen, onClose, onSubmit, service
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
-    onClose();
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <button className="modal-close" onClick={onClose}>×</button>
+        <button className="modal-close" onClick={onClose}>
+          ×
+        </button>
 
         <h2 className="modal-title"> Solicitar: {service.title} </h2>
-        <p className="sv-subtitle">
-          Diligencia los datos para agendar tu visita.
-        </p>
+        <p className="sv-subtitle">Diligencia los datos para agendar tu visita.</p>
 
         <form className="modal-form" onSubmit={handleSubmit}>
           <div className="modal-field">
-            <label>Nombre</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+            {user ? (
+              <label>{user.name}</label>
+            ) : (
+              <>
+                <label>Nombre</label>
+                <input type="text" name="userName" value={formData.userName} defaultValue={formData.userName} onChange={handleChange} required />
+              </>
+            )}
           </div>
 
           <div className="modal-field">
-            <label>Correo electrónico</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+            {user ? (
+              <label>{user.email}</label>
+            ) : (
+              <>
+                <label>Correo electrónico</label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              </>
+            )}
           </div>
 
           <div className="modal-field">
+            {user ? (
+              <label>{user.phone}</label>
+            ) : (
+              <>
             <label>Teléfono</label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="phone" value={formData.phone} onChange={handleChange} required />
+              </>
+            )}
           </div>
 
           <div className="modal-field">
             <label>Fecha</label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
+            <input type="date" name="date" value={formData.date} onChange={handleChange} required />
           </div>
 
           <div className="modal-field">
             <label>Detalles adicionales</label>
-            <textarea
-              name="details"
-              rows="4"
-              value={formData.details}
-              onChange={handleChange}
-            ></textarea>
+            <textarea name="observation" rows="4" value={formData.observation} onChange={handleChange}></textarea>
           </div>
 
-          <button type="submit" className="modal-submit">Enviar solicitud</button>
+          <button type="submit" className="modal-submit">
+            Enviar solicitud
+          </button>
         </form>
       </div>
     </div>

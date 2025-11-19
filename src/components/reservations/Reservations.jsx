@@ -1,48 +1,48 @@
-// src/components/Reservations/Reservations.jsx
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import apiService from '../../services/apiService';
+import { getLS } from '../../services/localStorageService';
 import "./reservations.css";
 
 export default function Reservations() {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Simula datos desde servidor
-  useEffect(() => {
-    setTimeout(() => {
-      setReservations([
-        {
-          id: 1,
-          service: "Plomería",
-          date: "2025-11-20",
-          hour: "10:00 AM",
-          status: "Confirmada",
-        },
-        {
-          id: 2,
-          service: "Albañilería",
-          date: "2025-11-23",
-          hour: "02:00 PM",
-          status: "Pendiente",
-        },
-        {
-          id: 3,
-          service: "Mantenimiento eléctrico",
-          date: "2025-11-28",
-          hour: "09:00 AM",
-          status: "Confirmada",
-        },
-      ]);
+  // switches
+  const [hideCanceled, setHideCanceled] = useState(true);
+  const [showFinished, setShowFinished] = useState(false);
 
-      setLoading(false);
-    }, 600);
+  useEffect(() => {
+    apiService
+      .getAll("agendas")
+      .then((rsvs) => {
+        const user = getLS("user") || null;
+        if (!user || !user.id) return;
+
+        setReservations(rsvs.filter((rsv) => rsv.userId === user.id));
+        setLoading(false);
+      })
+      .catch((error) =>
+        toast.error("Error al intentar obtener las reservas")
+      );
   }, []);
 
-  const cancelReservation = (id) => {
-    const updated = reservations.filter((item) => item.id !== id);
-    setReservations(updated);
-    toast.success('Reserva cancelada')
+  const cancelReservation = (rsv) => {
+    if (confirm("Está seguro de cancelar la reserva?")) {
+      const rsvUpdated = { ...rsv, status: "cancelada" };
+      apiService.update("agendas", rsv.id, rsvUpdated).then((res) => {
+        setReservations((prev) =>
+          prev.map((item) => (item.id !== rsv.id ? item : rsvUpdated))
+        );
+        toast.success("Reserva cancelada");
+      });
+    }
   };
+
+  // filtros aplicados
+  const filteredReservations = reservations
+    .filter((rsv) => (hideCanceled ? rsv.status !== "cancelada" : true))
+    .filter((rsv) => (showFinished ? rsv.status === "finalizada" : true));
 
   if (loading) {
     return (
@@ -56,11 +56,36 @@ export default function Reservations() {
     <div className="reservations-container">
       <h2 className="reservations-title">Mis Reservas</h2>
 
-      {reservations.length === 0 ? (
-        <p className="no-reservations">No tienes reservas activas.</p>
+      {/* 🔥 Switches modernos */}
+      <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
+        {/* Switch ocultar canceladas */}
+        <label className="switch-wrapper">
+          <input
+            type="checkbox"
+            checked={hideCanceled}
+            onChange={() => setHideCanceled(!hideCanceled)}
+          />
+          <span className="switch-slider"></span>
+          <span className="switch-label">Ocultar canceladas</span>
+        </label>
+
+        {/* Switch mostrar solo finalizadas */}
+        <label className="switch-wrapper">
+          <input
+            type="checkbox"
+            checked={showFinished}
+            onChange={() => setShowFinished(!showFinished)}
+          />
+          <span className="switch-slider"></span>
+          <span className="switch-label">Mostrar solo finalizadas</span>
+        </label>
+      </div>
+
+      {filteredReservations.length === 0 ? (
+        <p className="no-reservations">No hay reservas para mostrar.</p>
       ) : (
         <div className="reservations-list">
-          {reservations.map((item) => (
+          {filteredReservations.map((item) => (
             <div key={item.id} className="reservation-card">
               <div className="card-info">
                 <h3>{item.service}</h3>
@@ -79,7 +104,7 @@ export default function Reservations() {
 
               <button
                 className="cancel-btn"
-                onClick={() => cancelReservation(item.id)}
+                onClick={() => cancelReservation(item)}
               >
                 Cancelar Reserva
               </button>

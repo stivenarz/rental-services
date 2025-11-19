@@ -1,15 +1,14 @@
 import axios from "axios";
 
-const API_URL = "https://192.168.1.105:3000"; // ⬅️ Cambia por tu backend
+const API_URL = "http://localhost:8000";
+// const API_URL = "http://192.168.1.105:8000";
 
-// Puedes obtener token del localStorage si lo usas
 const getToken = () => localStorage.getItem("token");
 
 const api = axios.create({
   baseURL: API_URL,
 });
 
-// Interceptor para agregar token automáticamente
 api.interceptors.request.use((config) => {
   const token = getToken();
   if (token) {
@@ -19,17 +18,17 @@ api.interceptors.request.use((config) => {
 });
 
 const apiService = {
-  // GET ALL
+  // GET ALL (sin slash final)
   async getAll(endpoint) {
     try {
-      const { data } = await api.get(`/${endpoint}`);
+      const { data } = await api.get(`/${endpoint}/`);
       return data;
     } catch (error) {
       throw error.response?.data || error;
     }
   },
 
-  // GET BY ID
+  // GET BY ID (URL limpia)
   async getById(endpoint, id) {
     try {
       const { data } = await api.get(`/${endpoint}/${id}`);
@@ -40,7 +39,7 @@ const apiService = {
   },
 
   // CREATE
-  async create(endpoint, payload) {
+  async post(endpoint, payload) {
     try {
       const { data } = await api.post(`/${endpoint}`, payload);
       return data;

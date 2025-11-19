@@ -1,25 +1,35 @@
 import React, { useState } from "react";
+import { getLS, setLS } from '../../services/localStorageService'
+import apiService from '../../services/apiService'
 import toast from "react-hot-toast";
 import "./profile.css";
 
 export default function Profile() {
-  const [form, setForm] = useState({
-    name: "Stiven Arz",
-    email: "stiven@example.com",
-    phone: "3001234567",
-    address: "Bogotá, Colombia"
+  const [user, setUser] = useState(getLS('user'))
+  const [userForm, setUserForm] = useState({
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    address: user.address
   });
+  const logoUrl = `https://ui-avatars.com/api/?name=${user.name}&background=6f6ff5&color=fff`
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
+    setUserForm({
+      ...userForm,
       [e.target.name]: e.target.value
     });
   };
 
   const handleSave = () => {
-    console.log("Perfil guardado:", form);
-    toast.success("Perfil actualizado exitosamente.");
+    apiService
+    .update('users', user.id, userForm)
+    .then(res => {
+      setUser(res)
+      setLS('user', res)
+      toast.success("Perfil actualizado exitosamente.");
+    })
+    .catch(error => toast.error('Error al intentar actualizar tu perfil'))
   };
 
   return (
@@ -32,19 +42,19 @@ export default function Profile() {
         {/* Avatar */}
         <div className="profile-avatar">
           <img
-            src="https://ui-avatars.com/api/?name=Stiven+Arz&background=6f6ff5&color=fff"
+            src={logoUrl}
             alt="avatar"
           />
         </div>
 
-        {/* Form */}
-        <div className="profile-form">
+        {/* UserForm */}
+        <div className="profile-userForm">
 
           <div className="profile-field">
             <label>Nombre completo</label>
             <input
               name="name"
-              value={form.name}
+              value={userForm.name}
               onChange={handleChange}
               type="text"
             />
@@ -54,7 +64,7 @@ export default function Profile() {
             <label>Correo electrónico</label>
             <input
               name="email"
-              value={form.email}
+              value={userForm.email}
               onChange={handleChange}
               type="email"
             />
@@ -64,7 +74,7 @@ export default function Profile() {
             <label>Teléfono</label>
             <input
               name="phone"
-              value={form.phone}
+              value={userForm.phone}
               onChange={handleChange}
               type="text"
             />
@@ -74,7 +84,7 @@ export default function Profile() {
             <label>Dirección</label>
             <input
               name="address"
-              value={form.address}
+              value={userForm.address}
               onChange={handleChange}
               type="text"
             />

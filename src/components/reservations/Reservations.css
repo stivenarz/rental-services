@@ -88,7 +88,12 @@
   font-weight: 600;
 }
 
-.status.confirmada {
+.status.finalizado {
+  background-color: #c1fbd5;
+  color: #02451a;
+}
+
+.status.confirmado {
   background-color: #dcfce7;
   color: #166534;
 }
@@ -98,7 +103,7 @@
   color: #854d0e;
 }
 
-.status.cancelada {
+.status.cancelado {
   background-color: #fee2e2;
   color: #b91c1c;
 }
@@ -131,4 +136,52 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch-wrapper input {
+  display: none;
+}
+
+.switch-slider {
+  position: relative;
+  width: 45px;
+  height: 24px;
+  background: #ccc;
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.switch-slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.switch-wrapper input:checked + .switch-slider {
+  background: #007bff;
+}
+
+.switch-wrapper input:checked + .switch-slider::before {
+  transform: translateX(21px);
+}
+
+.switch-label {
+  font-size: 14px;
+  color: #444;
 }

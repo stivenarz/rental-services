@@ -53,6 +53,7 @@
 .contact-form {
   background: var(--ct-card);
   padding: 30px;
+  margin-top: 20px;
   border-radius: var(--ct-radius);
   box-shadow: var(--ct-shadow);
   text-align: left;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setLS } from "../../services/localStorageService";
+import apiService from "../../services/apiService";
+import {toast} from "react-hot-toast";
 import "./login.css";
 
 export default function LoginModern() {
@@ -13,8 +15,13 @@ export default function LoginModern() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLS('user', formData)
-    navigate('/')
+    apiService
+    .post('users/login', formData)
+    .then(userLogged => {
+      setLS('user', userLogged)
+      navigate('/')
+    })
+    .catch(error => toast.error(error.detail))
   };
 
   return (
