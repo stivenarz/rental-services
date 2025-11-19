@@ -30,7 +30,7 @@ export default function AgendasAdministration() {
     apiService
       .getAll('technicians')
       .then((res) => {
-        setTechnicians(res);
+        setTechnicians(res);  //TODO: MEJORANDO ESTE COMPONENTE
       })
       .catch((error) => toast.error(`Error al obtener los técnicos: ${error.detail}`));
   }, []);
