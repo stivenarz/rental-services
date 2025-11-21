@@ -1,17 +1,25 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocalStorageObserver, getLS } from '../services/localStorageService';
 
 export default function RoleRoute({ children, allowedRole }) {
-    return children
-    
-  // Cambiar por request al servidor
-  const user = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
 
-  // No está autenticado
+  const [user, setUser] = useState(() => getLS('user'));
+
+  useLocalStorageObserver(({ key, value }) => {
+    if (key === "user") {
+      setUser(value);
+
+      if (!value) {
+        navigate("/login", { replace: true });
+      }
+    }
+  });
+
   if (!user) return <Navigate to="/login" replace />;
 
-  // No tiene el rol requerido
   if (user.role !== allowedRole) return <Navigate to="/" replace />;
 
-  // Tiene el rol, permitir acceso
   return children;
 }

@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import "./Auth.css";
+import apiService from "../../services/apiService";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export function CreateAccount() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
+    address: "",
+    isDeleted: false,
+    role: 'user',
     password: "",
   });
+
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,7 +24,13 @@ export function CreateAccount() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Account created:", formData);
+    apiService
+    .post('users/', formData)
+    .then(res => {
+      toast.success('Usuario registrado correctamente, puedes iniciar sesion')
+      navigate('/login')
+    })
+    .catch(error => toast.error('Error intentando registrar el usuario: ' + error.detail))
   };
 
   return (
@@ -45,6 +61,28 @@ export function CreateAccount() {
         </div>
 
         <div className="auth-field">
+          <label>Teléfono</label>
+          <input
+            type="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="auth-field">
+          <label>Dirección</label>
+          <input
+            type="address"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="auth-field">
           <label>Password</label>
           <input
             type="password"
@@ -55,7 +93,7 @@ export function CreateAccount() {
           />
         </div>
 
-        <button type="submit" className="auth-btn">Create Account</button>
+        <button type="submit" className="auth-btn">Crear cuenta</button>
       </form>
     </div>
   );

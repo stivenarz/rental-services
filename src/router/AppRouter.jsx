@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AboutPage from '../pages/AboutPage';
-import Register from '../pages/Register';
-import Recovery from '../pages/Recovery';
-import Login from '../components/auth/Login';
 import RoleRoute from '../middleware/RoleRoute';
-import TechniciansAdmin from '../components/technicians-admin/TechniciansAdmin';
 import ServicesPage from '../pages/ServicesPage';
 import ProfilePage from '../pages/ProfilePage';
 import ContactPage from '../pages/ContactPage';
 import ReservasPage from '../pages/ReservasPage';
 import ServicesAdministrationPage from '../pages/ServicesAdministrationPage';
 import AgendasAdministrationPage from '../pages/AgendasAdministrationPage';
+import RegisterPage from '../pages/RegisterPage';
+import LoginPage from '../pages/LoginPage';
+import RecoveryPage from '../pages/RecoveryPage';
+import TechniciansAdminPage from '../pages/TechniciansAdminPage';
 
 export default function AppRouter() {
   return (
@@ -19,9 +19,9 @@ export default function AppRouter() {
         <Route path="/" element={<ServicesPage/>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/auth/register" element={<Register />} />
-        <Route path="/auth/recovery" element={<Recovery />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/recovery" element={<RecoveryPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/reservations" element={<ReservasPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route
@@ -44,7 +44,7 @@ export default function AppRouter() {
           path="/technicians"
           element={
             <RoleRoute allowedRole={'admin'}>
-              <TechniciansAdmin />
+              <TechniciansAdminPage />
             </RoleRoute>
           }
         />

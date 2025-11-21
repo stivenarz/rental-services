@@ -5,7 +5,7 @@ import apiService from "../../services/apiService";
 import {toast} from "react-hot-toast";
 import "./login.css";
 
-export default function LoginModern() {
+export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -55,8 +55,8 @@ export default function LoginModern() {
         <button type="submit" className="login-btn">Log In</button>
 
         <div className="login-links">
-          <a href="#">Forgot your password?</a>
-          <a href="#">Create an account</a>
+          <a href="/recovery">Forgot your password?</a>
+          <a href="/register">Create an account</a>
         </div>
       </form>
     </div>

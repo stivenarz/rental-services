@@ -1,12 +1,13 @@
 import {useState} from 'react'
 import "./Auth.css";
+import toast from 'react-hot-toast';
 
 export function RecoverAccount() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Recovery link sent to:", email);
+    toast.success("Recovery link sent to:", email)
   };
 
   return (
