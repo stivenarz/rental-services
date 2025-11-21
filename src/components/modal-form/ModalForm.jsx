@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getLS } from '../../services/localStorageService';
-import './modalform.css';
+import './ModalForm.css';
 
 export default function ServiceRequestModal({ isOpen, onClose, onSubmit, service }) {
   const [user, setUser] = useState(getLS('user') || null);

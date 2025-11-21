@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import apiService from '../../services/apiService';
 import { getLS } from '../../services/localStorageService';
-import "./reservations.css";
+import "./Reservations.css";
 
 export default function Reservations() {
   const [reservations, setReservations] = useState([]);

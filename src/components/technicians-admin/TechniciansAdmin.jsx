@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import "./techniciansAdmin.css";
+import "./TechniciansAdmin.css";
 import TechnicianModal from "../technicians-modal/TechniciansModal";
 import apiService from '../../services/apiService';
 import toast from "react-hot-toast";

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { getLS, useLocalStorageObserver, removeLS } from '../../services/localStorageService';
 import { nameShortener } from '../../services/utils';
 import { useLocation } from 'react-router-dom';
-import './navbar.css';
+import './Navbar.css';
 
 export default function Navbar({ links = null, setSearch = null }) {
   const [user, setUser] = useState(() => {

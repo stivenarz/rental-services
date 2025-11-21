@@ -1,6 +1,6 @@
 // Services.jsx
 import React, { useEffect, useState } from 'react';
-import './services.css';
+import './Services.css';
 import apiService from '../../services/apiService';
 import toast from 'react-hot-toast';
 import ServiceRequestModal from '../modal-form/ModalForm';

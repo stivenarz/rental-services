@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './modalAgendas.css';
+import './ModalAgendas.css';
 
 export default function AgendasModal({ agenda = {}, technicians = [], onClose, onUpdate }) {
   const [status, setStatus] = useState(agenda.status || '');

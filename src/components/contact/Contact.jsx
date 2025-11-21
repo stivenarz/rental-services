@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import "./contact.css";
+import "./Contact.css";
 
 export default function Contact() {
   const [form, setForm] = useState({
