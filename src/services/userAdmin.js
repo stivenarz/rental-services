@@ -1,6 +1,9 @@
 import toast from "react-hot-toast";
 import apiService from "./apiService";
 
+/**
+ * Función que valida si existe el usuario admin en la base de datos y si no existe crea el usuario
+ */
 export const userAdminValidation = () => {
     const admin = {
         name: "Karol G",
@@ -26,6 +29,4 @@ export const userAdminValidation = () => {
         .catch(error=> {
             // toast.error('no se pudo obtener los usuarios')
         })
-    // apiService.remove('users', 6)
-    // apiService.remove('users', 4)
 }
