@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { getLS, setLS } from '../../services/localStorageService'
 import apiService from '../../services/apiService'
 import toast from "react-hot-toast";
-import "./profile.css";
+import "./Profile.css";
 
 export default function Profile() {
   const [user, setUser] = useState(getLS('user'))
