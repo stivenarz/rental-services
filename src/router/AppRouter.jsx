@@ -11,6 +11,7 @@ import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import RecoveryPage from '../pages/RecoveryPage';
 import TechniciansAdminPage from '../pages/TechniciansAdminPage';
+import GraphicPage from '../pages/GraphicPage';
 
 export default function AppRouter() {
   return (
@@ -24,6 +25,7 @@ export default function AppRouter() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reservations" element={<ReservasPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/graphic" element={<GraphicPage />} />
         <Route
           path="/services-administration"
           element={

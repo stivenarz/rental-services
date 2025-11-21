@@ -121,6 +121,11 @@ export default function Navbar({ links = null, setSearch = null }) {
                       Administrar agendas
                     </a>
                     }
+                    {user.role === 'admin' && 
+                    <a href="/graphic" className="nm-dropdown-item">
+                      Grafico de servicios agendados
+                    </a>
+                    }
                     <a href="/reservations" className="nm-dropdown-item">
                       Reservas
                     </a>
