@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://rental-services-backend.onrender.com";
+// const API_URL = "http://localhost:8000";
 // const API_URL = "http://192.168.1.105:8000";
 
 const getToken = () => localStorage.getItem("token");
