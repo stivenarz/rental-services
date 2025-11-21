@@ -13,7 +13,7 @@ export default function Navbar({ links = null, setSearch = null }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef(null);
-  const logoStr = nameShortener(user.name, 2);
+  const logoStr = nameShortener(user?.name || '', 2);
   const location = useLocation();
   useLocalStorageObserver((change) => {
     if (!change) return;
@@ -85,12 +85,6 @@ export default function Navbar({ links = null, setSearch = null }) {
           </div>
 
           <div className="nm-actions">
-            {/* <button className="nm-btn" title="Notificaciones" aria-label="Notificaciones">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M15 17H9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M18 8a6 6 0 10-12 0v6l-2 2h16l-2-2V8z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button> */}
 
             <div className="nm-sep" aria-hidden />
 
@@ -112,6 +106,21 @@ export default function Navbar({ links = null, setSearch = null }) {
                     <a href="/profile" className="nm-dropdown-item">
                       Mi perfil
                     </a>
+                    {user.role === 'admin' && 
+                    <a href="/services-administration" className="nm-dropdown-item">
+                      Administrar servicios
+                    </a>
+                    }
+                    {user.role === 'admin' && 
+                    <a href="/technicians" className="nm-dropdown-item">
+                      Administrar técnicos
+                    </a>
+                    }
+                    {user.role === 'admin' && 
+                    <a href="/agendas-administration" className="nm-dropdown-item">
+                      Administrar agendas
+                    </a>
+                    }
                     <a href="/reservations" className="nm-dropdown-item">
                       Reservas
                     </a>

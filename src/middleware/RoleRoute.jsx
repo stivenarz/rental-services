@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
 export default function RoleRoute({ children, allowedRole }) {
-    return children
     
   // Cambiar por request al servidor
   const user = JSON.parse(localStorage.getItem('user'));
