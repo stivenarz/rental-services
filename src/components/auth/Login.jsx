@@ -5,6 +5,10 @@ import apiService from "../../services/apiService";
 import {toast} from "react-hot-toast";
 import "./login.css";
 
+/**
+ * Componente Login
+ * @returns Documento HTML
+ */
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -27,8 +31,8 @@ export default function Login() {
   return (
     <div className="login-wrapper">
       <form className="login-box" onSubmit={handleSubmit}>
-        <h2 className="login-title">Welcome Back</h2>
-        <p className="login-sub">Log in to continue</p>
+        <h2 className="login-title">Bienvenido</h2>
+        <p className="login-sub">inicia sesion para continuar</p>
 
         <div className="login-field">
           <label>Email</label>
@@ -42,7 +46,7 @@ export default function Login() {
         </div>
 
         <div className="login-field">
-          <label>Password</label>
+          <label>Contraseña</label>
           <input
             type="password"
             name="password"
@@ -52,11 +56,11 @@ export default function Login() {
           />
         </div>
 
-        <button type="submit" className="login-btn">Log In</button>
+        <button type="submit" className="login-btn">Ingresar</button>
 
         <div className="login-links">
-          <a href="/recovery">Forgot your password?</a>
-          <a href="/register">Create an account</a>
+          <a href="/recovery">¿Olvidaste tu contraseña?</a>
+          <a href="/register">Crear una cuenta</a>
         </div>
       </form>
     </div>
