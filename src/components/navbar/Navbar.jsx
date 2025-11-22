@@ -138,7 +138,7 @@ export default function Navbar({ links = null, setSearch = null }) {
 
             {/* MENÚ DE PERFIL O LOGIN */}
             {!user ? (
-              <a href="/login" className="nm-dropdown-item">
+              <a href="/#/login" className="nm-dropdown-item">
                 Iniciar sesión
               </a>
             ) : (
@@ -157,18 +157,18 @@ export default function Navbar({ links = null, setSearch = null }) {
                 {profileOpen && (
                   <div className="nm-dropdown-panel" role="menu" aria-label="Perfil">
 
-                    <a href="/profile" className="nm-dropdown-item">Mi perfil</a>
+                    <a href="/#/profile" className="nm-dropdown-item">Mi perfil</a>
 
                     {user.role === 'admin' && (
                       <>
-                        <a href="/services-administration" className="nm-dropdown-item">Administrar servicios</a>
-                        <a href="/technicians" className="nm-dropdown-item">Administrar técnicos</a>
-                        <a href="/agendas-administration" className="nm-dropdown-item">Administrar agendas</a>
-                        <a href="/graphic" className="nm-dropdown-item">Gráfico de servicios agendados</a>
+                        <a href="/#/services-administration" className="nm-dropdown-item">Administrar servicios</a>
+                        <a href="/#/technicians" className="nm-dropdown-item">Administrar técnicos</a>
+                        <a href="/#/agendas-administration" className="nm-dropdown-item">Administrar agendas</a>
+                        <a href="/#/graphic" className="nm-dropdown-item">Gráfico de servicios agendados</a>
                       </>
                     )}
 
-                    <a href="/reservations" className="nm-dropdown-item">Reservas</a>
+                    <a href="/#/reservations" className="nm-dropdown-item">Reservas</a>
 
                     <a className="nm-dropdown-item" onClick={logOut}>Cerrar sesión</a>
                   </div>

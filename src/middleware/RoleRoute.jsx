@@ -45,7 +45,7 @@ export default function RoleRoute({ children, allowedRole }) {
 
       // Si quitaron el usuario del localStorage → cerrar sesión
       if (!e.value) {
-        navigate("/login", { replace: true });
+        navigate("/#/login", { replace: true });
       }
     }
   });

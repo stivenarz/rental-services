@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import AboutPage from '../pages/AboutPage';
 import RoleRoute from '../middleware/RoleRoute';
 import ServicesPage from '../pages/ServicesPage';
@@ -15,7 +15,7 @@ import GraphicPage from '../pages/GraphicPage';
 
 export default function AppRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<ServicesPage/>} />
         <Route path="/about" element={<AboutPage />} />
@@ -52,6 +52,6 @@ export default function AppRouter() {
         />
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

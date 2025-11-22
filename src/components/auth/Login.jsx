@@ -50,7 +50,7 @@ export default function Login() {
       .post("users/login", formData)
       .then((userLogged) => {
         setLS("user", userLogged);
-        navigate("/");
+        navigate("/#/");
       })
       .catch((error) => toast.error(error.detail));
   };
@@ -86,8 +86,8 @@ export default function Login() {
         <button type="submit" className="login-btn">Ingresar</button>
 
         <div className="login-links">
-          <a href="/recovery">¿Olvidaste tu contraseña?</a>
-          <a href="/register">Crear una cuenta</a>
+          <a href="/#/recovery">¿Olvidaste tu contraseña?</a>
+          <a href="/#/register">Crear una cuenta</a>
         </div>
       </form>
     </div>

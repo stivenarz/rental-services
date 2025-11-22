@@ -62,7 +62,7 @@ export function CreateAccount() {
       .post("users/", formData)
       .then(() => {
         toast.success("Usuario registrado correctamente, puedes iniciar sesión");
-        navigate("/login");
+        navigate("/#/login");
       })
       .catch((error) =>
         toast.error(
