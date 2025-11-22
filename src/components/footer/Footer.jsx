@@ -4,7 +4,7 @@ import "./Footer.css";
 /**
  * Footer Component
  *
- * Este componente renderiza un pie de página moderno con tres secciones:
+ * Este componente renderiza un pie de página  con tres secciones:
  *  - Información de la empresa
  *  - Enlaces rápidos de navegación
  *  - Datos de contacto
@@ -22,37 +22,35 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer-modern">
+    <footer className="footer">
       <div className="footer-container custom-container">
         <div className="footer-columns">
 
           {/* Columna: About Us */}
           <div className="footer-col">
-            <h3 className="footer-title">About Us</h3>
+            <h3 className="footer-title">Sobre nosotros</h3>
             <p className="footer-desc">
-              We offer reliable home services such as plumbing, carpentry and 
-              general repairs. Quality and professionalism guaranteed.
+              Ofrecemos servicios confiables para el hogar, como plomería, carpintería y reparaciones generales. Calidad y profesionalismo garantizados.
             </p>
           </div>
 
           {/* Columna: Quick Links */}
           <div className="footer-col">
-            <h3 className="footer-title">Quick Links</h3>
+            <h3 className="footer-title">Accesos rápidos</h3>
             <ul className="footer-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="#">Servicios</a></li>
+              <li><a href="#">Contacto</a></li>
+              <li><a href="#">Acerca de nosotros</a></li>
             </ul>
           </div>
 
           {/* Columna: Contact */}
           <div className="footer-col">
-            <h3 className="footer-title">Contact</h3>
+            <h3 className="footer-title">Contactanos</h3>
             <ul className="footer-contact">
-              <li>Email: info@example.com</li>
-              <li>Phone: +57 320 555 0101</li>
-              <li>Location: Bogotá, Colombia</li>
+              <li>Email: info@rentalservices.com</li>
+              <li>Teléfono: +57 320 555 0101</li>
+              <li>Ubicación: Medellin, Colombia</li>
             </ul>
           </div>
 
@@ -60,7 +58,7 @@ export default function Footer() {
 
         {/* Línea inferior del pie de página */}
         <div className="footer-bottom">
-          <p className="footer-copy">© {currentYear} All rights reserved.</p>
+          <p className="footer-copy">© {currentYear} Todos los derechos reservados.</p>
         </div>
 
       </div>

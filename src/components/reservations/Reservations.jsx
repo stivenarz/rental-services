@@ -81,7 +81,7 @@ export default function Reservations() {
     <div className="reservations-container">
       <h2 className="reservations-title">Mis Reservas</h2>
 
-      {/* 🔥 Switches modernos */}
+      {/* 🔥 Switches  */}
       <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
         {/* Switch: ocultar canceladas */}
         <label className="switch-wrapper">

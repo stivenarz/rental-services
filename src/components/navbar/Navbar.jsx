@@ -138,7 +138,7 @@ export default function Navbar({ links = null, setSearch = null }) {
 
             {/* MENÚ DE PERFIL O LOGIN */}
             {!user ? (
-              <a href="/#/login" className="nm-dropdown-item">
+              <a href="/#/login" className="nm-dropdown-item nm-links">
                 Iniciar sesión
               </a>
             ) : (
@@ -216,8 +216,7 @@ export default function Navbar({ links = null, setSearch = null }) {
             ))}
 
             <div style={{ display: 'flex', gap: 8, marginTop: 6 }}>
-              <button className="nm-btn" style={{ flex: 1 }}>Iniciar sesión</button>
-              <button className="nm-btn primary" style={{ flex: 1 }}>Crear cuenta</button>
+              <a href="/#/login" className="nm-dropdown-item" style={{ flex: 1 }}>Iniciar sesión</a>
             </div>
           </div>
         </div>

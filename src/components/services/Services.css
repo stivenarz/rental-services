@@ -24,6 +24,7 @@
   box-shadow: var(--sv-shadow);
   transition: transform 0.25s ease, background 0.25s ease;
   text-align: left;
+  max-width: 20rem;
 }
 
 .sv-card:hover {
