@@ -5,9 +5,7 @@ import axios from "axios";
  * Puedes alternar entre producción y desarrollo.
  * @type {string}
  */
-const API_URL = "https://rental-services-backend.onrender.com";
-// const API_URL = "http://localhost:8000";
-// const API_URL = "http://192.168.1.105:8000";
+const API_URL = process.env.REACT_APP_API_URL;
 
 /**
  * Obtiene el token almacenado en localStorage.

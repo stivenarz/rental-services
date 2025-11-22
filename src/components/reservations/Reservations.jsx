@@ -4,14 +4,29 @@ import apiService from '../../services/apiService';
 import { getLS } from '../../services/localStorageService';
 import "./Reservations.css";
 
+/**
+ * Componente que muestra las reservas del usuario autenticado.
+ * Permite filtrar, cancelar y visualizar el estado de cada reserva.
+ *
+ * @component
+ * @returns {JSX.Element} Vista de reservas del usuario
+ */
 export default function Reservations() {
+  /** @type {[Array, Function]} Lista de reservas del usuario */
   const [reservations, setReservations] = useState([]);
+
+  /** @type {[boolean, Function]} Estado de carga mientras se obtienen las reservas */
   const [loading, setLoading] = useState(true);
 
-  // switches
+  /** @type {[boolean, Function]} Si se deben ocultar reservas canceladas */
   const [hideCanceled, setHideCanceled] = useState(true);
+
+  /** @type {[boolean, Function]} Si se deben mostrar solo reservas finalizadas */
   const [showFinished, setShowFinished] = useState(false);
 
+  /**
+   * Obtiene todas las reservas y filtra solo las del usuario logueado.
+   */
   useEffect(() => {
     apiService
       .getAll("agendas")
@@ -22,15 +37,21 @@ export default function Reservations() {
         setReservations(rsvs.filter((rsv) => rsv.userId === user.id));
         setLoading(false);
       })
-      .catch((error) =>
-        toast.error("Error al intentar obtener las reservas")
-      );
+      .catch(() => toast.error("Error al intentar obtener las reservas"));
   }, []);
 
+  /**
+   * Cancela una reserva si el usuario confirma la acción.
+   *
+   * @param {Object} rsv - Reserva seleccionada
+   * @param {number} rsv.id - ID de la reserva
+   * @param {string} rsv.status - Estado actual de la reserva
+   */
   const cancelReservation = (rsv) => {
     if (confirm("Está seguro de cancelar la reserva?")) {
       const rsvUpdated = { ...rsv, status: "cancelada" };
-      apiService.update("agendas", rsv.id, rsvUpdated).then((res) => {
+
+      apiService.update("agendas", rsv.id, rsvUpdated).then(() => {
         setReservations((prev) =>
           prev.map((item) => (item.id !== rsv.id ? item : rsvUpdated))
         );
@@ -39,7 +60,11 @@ export default function Reservations() {
     }
   };
 
-  // filtros aplicados
+  /**
+   * Aplica filtros a la lista de reservas según switches activos.
+   *
+   * @type {Array}
+   */
   const filteredReservations = reservations
     .filter((rsv) => (hideCanceled ? rsv.status !== "cancelada" : true))
     .filter((rsv) => (showFinished ? rsv.status === "finalizada" : true));
@@ -58,7 +83,7 @@ export default function Reservations() {
 
       {/* 🔥 Switches modernos */}
       <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
-        {/* Switch ocultar canceladas */}
+        {/* Switch: ocultar canceladas */}
         <label className="switch-wrapper">
           <input
             type="checkbox"
@@ -69,7 +94,7 @@ export default function Reservations() {
           <span className="switch-label">Ocultar canceladas</span>
         </label>
 
-        {/* Switch mostrar solo finalizadas */}
+        {/* Switch: mostrar solo finalizadas */}
         <label className="switch-wrapper">
           <input
             type="checkbox"
@@ -81,6 +106,7 @@ export default function Reservations() {
         </label>
       </div>
 
+      {/* Lista o mensaje vacío */}
       {filteredReservations.length === 0 ? (
         <p className="no-reservations">No hay reservas para mostrar.</p>
       ) : (

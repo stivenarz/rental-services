@@ -5,11 +5,44 @@ import apiService from '../../services/apiService';
 import toast from 'react-hot-toast';
 import ServiceRequestModal from '../modal-form/ModalForm';
 
+/**
+ * Componente que muestra la lista de servicios disponibles para los usuarios.
+ * Permite filtrar servicios, ver detalles y solicitar un servicio mediante un formulario modal.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.search - Cadena de búsqueda para filtrar servicios
+ * @returns {JSX.Element}
+ */
 export default function Services({ search }) {
+  /**
+   * Estado para controlar el spinner de carga inicial.
+   * @type {boolean}
+   */
   const [loading, setLoading] = useState(true);
+
+  /**
+   * Lista completa de servicios obtenidos del servidor.
+   * @type {Array<Object>}
+   */
   const [services, setServices] = useState([]);
+
+  /**
+   * Servicio actualmente seleccionado para solicitar.
+   * @type {Object|null}
+   */
   const [selectedService, setSelectedService] = useState(null);
+
+  /**
+   * Lista filtrada de servicios según el texto ingresado en el buscador.
+   * @type {Array<Object>}
+   */
   const [servicesFiltered, setServicesFiltered] = useState(services);
+
+  /**
+   * Controla la apertura del modal de solicitud de servicio.
+   * @type {boolean}
+   */
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -24,7 +57,6 @@ export default function Services({ search }) {
       });
   }, []);
 
-  // Simula carga
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
@@ -34,34 +66,64 @@ export default function Services({ search }) {
   }, []);
 
   useEffect(() => {
+    /**
+     * Normaliza un texto eliminando acentos para permitir mejor búsqueda.
+     *
+     * @param {string} str
+     * @returns {string}
+     */
     const normalize = (str) =>
       str
-        .normalize('NFD') // separa caracteres base + acento
-        .replace(/[\u0300-\u036f]/g, '') // elimina acentos
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
         .toLowerCase();
-    const filterServices = services.filter((service) => {
-      const text = normalize(search).toLowerCase();
-      return normalize(service.title).toLowerCase().includes(text) || normalize(service.description).toLowerCase().includes(text);
-    });
-    setServicesFiltered(filterServices);
-  }, [search]);
 
+    const text = normalize(search);
+
+    const filterServices = services.filter((service) => {
+      return (
+        normalize(service.title).includes(text) ||
+        normalize(service.description).includes(text)
+      );
+    });
+
+    setServicesFiltered(filterServices);
+  }, [search, services]);
+
+  /**
+   * Abre el modal y establece el servicio seleccionado.
+   *
+   * @function
+   * @param {Object} service - Servicio seleccionado
+   */
   const serviceRequest = (service) => {
     setSelectedService(service);
     setModalOpen(true);
   };
+
+  /**
+   * Envía la solicitud de servicio al backend (agendas/create).
+   *
+   * @function
+   * @param {Object} formData - Datos del formulario enviado
+   */
   const sendRequest = (formData) => {
     apiService
       .post('agendas/', formData)
-      .then((res) => {
-        toast.success('Solicitud de servicio exitoso, puedes visualizarlo en tus reservas');
-        closeModal()
+      .then(() => {
+        toast.success('Solicitud de servicio exitosa. Puedes visualizarla en tus reservas');
+        closeModal();
       })
       .catch((error) => {
         toast.error(error.detail);
       });
   };
 
+  /**
+   * Cierra el modal de solicitud.
+   *
+   * @function
+   */
   const closeModal = () => {
     setModalOpen(!modalOpen);
   };
@@ -70,7 +132,9 @@ export default function Services({ search }) {
     <>
       <section className="container">
         <h2 className="title">Servicios Locativos para tu Hogar</h2>
-        <p className="subtitle">Contamos con profesionales expertos para mejorar, reparar o transformar tus espacios.</p>
+        <p className="subtitle">
+          Contamos con profesionales expertos para mejorar, reparar o transformar tus espacios.
+        </p>
 
         {/* Spinner */}
         {loading ? (
@@ -91,12 +155,28 @@ export default function Services({ search }) {
                 </div>
               ))
             ) : (
-              <>{search.length ? <p>*** No se encontraron resultados con el texto: {search} ***</p> : <p>*** No se encontraron servicios para visualizar ***</p>}</>
+              <>
+                {search.length ? (
+                  <p>
+                    *** No se encontraron resultados con el texto: <b>{search}</b> ***
+                  </p>
+                ) : (
+                  <p>*** No se encontraron servicios para visualizar ***</p>
+                )}
+              </>
             )}
           </div>
         )}
       </section>
-      {selectedService ? <ServiceRequestModal isOpen={modalOpen} service={selectedService} onSubmit={sendRequest} onClose={closeModal} /> : null}
+
+      {selectedService && (
+        <ServiceRequestModal
+          isOpen={modalOpen}
+          service={selectedService}
+          onSubmit={sendRequest}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 }

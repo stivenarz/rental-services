@@ -4,16 +4,47 @@ import apiService from '../../services/apiService'
 import toast from "react-hot-toast";
 import "./Profile.css";
 
+/**
+ * Componente que muestra y permite editar la información del perfil del usuario.
+ * Permite actualizar nombre, correo, teléfono y dirección.
+ *
+ * @component
+ * @returns {JSX.Element} Formulario de perfil del usuario
+ */
 export default function Profile() {
-  const [user, setUser] = useState(getLS('user'))
+
+  /**
+   * Usuario actual almacenado en LocalStorage.
+   * @type {Object}
+   * @property {number} id - ID del usuario
+   * @property {string} name - Nombre del usuario
+   * @property {string} email - Email del usuario
+   * @property {string} phone - Teléfono del usuario
+   * @property {string} address - Dirección del usuario
+   */
+  const [user, setUser] = useState(getLS('user'));
+
+  /**
+   * Estado del formulario editable del usuario.
+   * Se inicializa con los valores del usuario actual.
+   *
+   * @type {[Object, Function]}
+   */
   const [userForm, setUserForm] = useState({
     name: user.name,
     email: user.email,
     phone: user.phone,
     address: user.address
   });
-  const logoUrl = `https://ui-avatars.com/api/?name=${user.name}&background=6f6ff5&color=fff`
 
+  /** URL generada automáticamente para mostrar un avatar basado en el nombre del usuario */
+  const logoUrl = `https://ui-avatars.com/api/?name=${user.name}&background=6f6ff5&color=fff`;
+
+  /**
+   * Maneja los cambios de los inputs del formulario de perfil.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e Evento del input
+   */
   const handleChange = (e) => {
     setUserForm({
       ...userForm,
@@ -21,15 +52,21 @@ export default function Profile() {
     });
   };
 
+  /**
+   * Envía los datos modificados del usuario al servidor para actualizar su perfil.
+   * Si la operación es exitosa, actualiza LocalStorage y el estado global del usuario.
+   */
   const handleSave = () => {
     apiService
-    .update('users', user.id, userForm)
-    .then(res => {
-      setUser(res)
-      setLS('user', res)
-      toast.success("Perfil actualizado exitosamente.");
-    })
-    .catch(error => toast.error('Error al intentar actualizar tu perfil'))
+      .update('users', user.id, userForm)
+      .then(res => {
+        setUser(res);
+        setLS('user', res);
+        toast.success("Perfil actualizado exitosamente.");
+      })
+      .catch(() =>
+        toast.error('Error al intentar actualizar tu perfil')
+      );
   };
 
   return (
@@ -47,7 +84,7 @@ export default function Profile() {
           />
         </div>
 
-        {/* UserForm */}
+        {/* Formulario de usuario */}
         <div className="profile-userForm">
 
           <div className="profile-field">

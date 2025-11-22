@@ -4,18 +4,81 @@ import './AgendasAdministration.css';
 import AgendasModal from '../modal-agendas/ModalAgendas';
 import apiService from '../../services/apiService';
 
+/**
+ * Componente AgendasAdministration
+ *
+ * Gestiona la visualización, filtrado y actualización de agendas creadas por usuarios.
+ * Incluye:
+ * - Carga inicial de agendas y técnicos
+ * - Filtros por estado, técnico, tipo de agenda y rango de fechas
+ * - Edición mediante modal
+ * - Renderizado de tabla con resultados filtrados
+ *
+ * @component
+ * @returns {JSX.Element} Vista administrativa de agendas.
+ */
 export default function AgendasAdministration() {
+  /**
+   * Lista de agendas cargadas desde la API.
+   * @type {Array<Object>}
+   */
   const [agendas, setAgendas] = useState([]);
+
+  /**
+   * Lista de técnicos para asignar o filtrar agendas.
+   * @type {Array<Object>}
+   */
   const [technicians, setTechnicians] = useState([]);
+
+  /**
+   * Agenda seleccionada para abrir en el modal.
+   * @type {Object|null}
+   */
   const [openAgenda, setOpenAgenda] = useState(null);
+
+  /**
+   * Filtro principal por fecha (todas, vencidas, próximas).
+   * @type {'all' | 'expired' | 'upcoming'}
+   */
   const [filterType, setFilterType] = useState('all');
+
+  /**
+   * Filtro por técnico asignado.
+   * @type {string|number}
+   */
   const [techFilter, setTechFilter] = useState('all');
+
+  /**
+   * Filtro por estado de la agenda.
+   * @type {'all' | 'Pendiente' | 'Finalizado' | 'Cancelado'}
+   */
   const [statusFilter, setStatusFilter] = useState('all');
+
+  /**
+   * Filtro fecha inicial.
+   * @type {string}
+   */
   const [fromDate, setFromDate] = useState('');
+
+  /**
+   * Filtro fecha final.
+   * @type {string}
+   */
   const [toDate, setToDate] = useState('');
+
+  /**
+   * Estado de carga.
+   * @type {boolean}
+   */
   const [isLoading, setIsLoading] = useState(true);
+
   const today = new Date();
 
+  /**
+   * Carga inicial de agendas y técnicos.
+   *
+   * @function useEffect
+   */
   useEffect(() => {
     apiService
       .getAll('agendas')
@@ -25,16 +88,22 @@ export default function AgendasAdministration() {
       })
       .catch((error) => {
         toast.error(`Error al obtener las reservas: ${error.detail}`);
-        return [];
       });
+
     apiService
       .getAll('technicians')
-      .then((res) => {
-        setTechnicians(res);  //TODO: MEJORANDO ESTE COMPONENTE
-      })
-      .catch((error) => toast.error(`Error al obtener los técnicos: ${error.detail}`));
+      .then((res) => setTechnicians(res))
+      .catch((error) =>
+        toast.error(`Error al obtener los técnicos: ${error.detail}`)
+      );
   }, []);
 
+  /**
+   * Filtra las agendas basado en los filtros activos.
+   *
+   * @constant
+   * @type {Array<Object>}
+   */
   const filteredAgendas = useMemo(() => {
     return agendas.filter((a) => {
       const agendaDate = new Date(a.date);
@@ -47,17 +116,29 @@ export default function AgendasAdministration() {
       if (statusFilter !== 'all' && a.status !== statusFilter) return false;
       if (fromDate && agendaDate < new Date(fromDate)) return false;
       if (toDate && agendaDate > new Date(toDate)) return false;
+
       return true;
     });
   }, [agendas, filterType, techFilter, statusFilter, fromDate, toDate]);
 
+  /**
+   * Actualiza una agenda en la API y localmente.
+   *
+   * @function updateAgenda
+   * @param {Object} updated - Datos actualizados de la agenda.
+   */
   const updateAgenda = (updated) => {
-    apiService.update('agendas', updated.id, updated)
-    .then(res=>{
-      toast.success('Reserva actualizada correctamente')
-      setAgendas((prev) => prev.map((a) => (a.id === updated.id ? updated : a)));
-    })
-    .catch(error => toast.error(`Error al guardar cambios: ${error.detail}`))
+    apiService
+      .update('agendas', updated.id, updated)
+      .then(() => {
+        toast.success('Reserva actualizada correctamente');
+        setAgendas((prev) =>
+          prev.map((a) => (a.id === updated.id ? updated : a))
+        );
+      })
+      .catch((error) =>
+        toast.error(`Error al guardar cambios: ${error.detail}`)
+      );
   };
 
   return (
@@ -125,17 +206,19 @@ export default function AgendasAdministration() {
               <tbody>
                 {filteredAgendas.length === 0 ? (
                   <tr>
-                    <td colSpan="5" className="ag-empty">
-                      No hay resultados
-                    </td>
+                    <td colSpan="5" className="ag-empty">No hay resultados</td>
                   </tr>
                 ) : (
                   filteredAgendas.map((a) => (
-                    <tr key={'tr' + a.id} onClick={() => setOpenAgenda(a)} className="ag-row">
+                    <tr
+                      key={'tr' + a.id}
+                      onClick={() => setOpenAgenda(a)}
+                      className="ag-row"
+                    >
                       <td>{a.userName}</td>
                       <td>{a.date}</td>
                       <td>{a.observation}</td>
-                      <td>{technicians.find(t => t.id === a.technician_id)?.name}</td>
+                      <td>{technicians.find((t) => t.id === a.technician_id)?.name}</td>
                       <td className={`ag-status ${a.status}`}>{a.status}</td>
                     </tr>
                   ))
@@ -145,7 +228,14 @@ export default function AgendasAdministration() {
           </div>
 
           {/* MODAL */}
-          {openAgenda && <AgendasModal agenda={openAgenda} technicians={technicians} onClose={() => setOpenAgenda(null)} onUpdate={updateAgenda} />}
+          {openAgenda && (
+            <AgendasModal
+              agenda={openAgenda}
+              technicians={technicians}
+              onClose={() => setOpenAgenda(null)}
+              onUpdate={updateAgenda}
+            />
+          )}
         </section>
       )}
     </>

@@ -2,13 +2,37 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import "./Contact.css";
 
+/**
+ * Componente de formulario de contacto.
+ * Permite a los usuarios enviar su nombre, correo y mensaje.
+ * Incluye validaciones mínimas y simulación de envío de datos.
+ *
+ * @component
+ * @returns {JSX.Element} Render del componente Contact.
+ */
 export default function Contact() {
+  /**
+   * Estado del formulario de contacto.
+   *
+   * @typedef {Object} ContactForm
+   * @property {string} name - Nombre completo del usuario.
+   * @property {string} email - Correo electrónico del usuario.
+   * @property {string} message - Mensaje ingresado por el usuario.
+   */
+
+  /** @type {[ContactForm, Function]} */
   const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
   });
 
+  /**
+   * Maneja los cambios en los inputs del formulario.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - Evento del input.
+   * @returns {void}
+   */
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -16,6 +40,13 @@ export default function Contact() {
     });
   };
 
+  /**
+   * Maneja el envío del formulario.
+   * Aquí se podría integrar un backend para enviar los datos.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e - Evento del formulario.
+   * @returns {void}
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
 

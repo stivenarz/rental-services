@@ -5,14 +5,7 @@ import apiService from "./apiService";
  * Función que valida si existe el usuario admin en la base de datos y si no existe crea el usuario
  */
 export const userAdminValidation = () => {
-    const admin = {
-        name: "Karol G",
-        phone: "3006586484",
-        address: "Cra 42 39C 23",
-        email: 'kgcarrillo10@gmail.com',
-        password: 'totumito',
-        role: "admin"
-    }
+    const admin = JSON.parse(process.env.REACT_APP_ADMIN);
     apiService.getAll('users')
         .then(res => {
             const userAdmin = res.filter(u => u.email == 'kgcarrillo10@gmail.com')

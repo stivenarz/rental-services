@@ -4,33 +4,71 @@ import apiService from "../../services/apiService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Componente CreateAccount
+ *
+ * Permite registrar un nuevo usuario enviando los datos al backend.
+ * Gestiona el formulario, valida campos requeridos y muestra notificaciones
+ * dependiendo del resultado de la operación.
+ *
+ * @component
+ * @returns {JSX.Element} Formulario de registro de usuario.
+ */
 export function CreateAccount() {
+  /**
+   * Estado que almacena los datos del formulario de registro.
+   *
+   * @typedef {Object} FormData
+   * @property {string} name - Nombre del usuario.
+   * @property {string} email - Correo electrónico del usuario.
+   * @property {string} phone - Número de teléfono del usuario.
+   * @property {string} address - Dirección del usuario.
+   * @property {boolean} isDeleted - Flag para indicar si el usuario está eliminado (por defecto false).
+   * @property {string} role - Rol asignado al usuario (por defecto 'user').
+   * @property {string} password - Contraseña del usuario.
+   */
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
     isDeleted: false,
-    role: 'user',
+    role: "user",
     password: "",
   });
 
   const navigate = useNavigate();
 
-
+  /**
+   * Maneja los cambios de los inputs del formulario.
+   *
+   * @function handleChange
+   * @param {React.ChangeEvent<HTMLInputElement>} e - Evento del input.
+   */
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Envía los datos del formulario al backend para crear un usuario.
+   *
+   * @function handleSubmit
+   * @param {React.FormEvent<HTMLFormElement>} e - Evento del formulario.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
+
     apiService
-    .post('users/', formData)
-    .then(res => {
-      toast.success('Usuario registrado correctamente, puedes iniciar sesion')
-      navigate('/login')
-    })
-    .catch(error => toast.error('Error intentando registrar el usuario: ' + error.detail))
+      .post("users/", formData)
+      .then(() => {
+        toast.success("Usuario registrado correctamente, puedes iniciar sesión");
+        navigate("/login");
+      })
+      .catch((error) =>
+        toast.error(
+          "Error intentando registrar el usuario: " + (error.detail || "")
+        )
+      );
   };
 
   return (
@@ -93,7 +131,9 @@ export function CreateAccount() {
           />
         </div>
 
-        <button type="submit" className="auth-btn">Crear cuenta</button>
+        <button type="submit" className="auth-btn">
+          Crear cuenta
+        </button>
       </form>
     </div>
   );
