@@ -86,9 +86,9 @@ export default function Navbar({ links = null, setSearch = null }) {
 
   /** Enlaces por defecto del navbar */
   const defaultLinks = [
-    { label: 'Servicios', href: '/' },
-    { label: 'Acerca de nosotros', href: '/about' },
-    { label: 'Contáctenos', href: '/contact' },
+    { label: 'Servicios', href: '/#/' },
+    { label: 'Acerca de nosotros', href: '/#/about' },
+    { label: 'Contáctenos', href: '/#/contact' },
   ];
 
   /** Enlaces finales a usar en la interfaz */
