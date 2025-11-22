@@ -5,7 +5,7 @@ import axios from "axios";
  * Puedes alternar entre producción y desarrollo.
  * @type {string}
  */
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 /**
  * Obtiene el token almacenado en localStorage.
